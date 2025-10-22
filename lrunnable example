@@ -1,0 +1,19 @@
+
+        LRunnable[] run = new LRunnable[1];
+        run[0] = ((LRunnable) (n)->{
+            boolean b = (n%2!=0);
+            display.setGlowing(b);
+            Common.runTaskLater(run[0], 12L);
+        }).loop(4).whenDone(display::remove);
+        run[0].run();
+
+
+is equivalent to:
+
+
+
+loop 4 times:
+  set {_b} to mod(b,2)!=0?true:false # or whatever ternary operator skript uses havent used it long time
+  set {_display}'s glowing to {_b} # or whatever syntax it is
+  wait 12 ticks
+kill {_display}
